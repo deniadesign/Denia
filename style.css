@@ -1,41 +1,316 @@
+/* ==========================
+   DENIADESIGN PREMIUM CSS
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#0f0f0f;
+    color:#fff;
+    line-height:1.7;
+}
+
+img{
+    width:100%;
+    display:block;
+}
+
+a{
+    text-decoration:none;
+}
+
+section{
+    padding:80px 10%;
+}
+
+h1,h2,h3{
+    font-weight:bold;
+}
+
+/* ================= HEADER ================= */
+
+header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    background:#111;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 10%;
+    z-index:1000;
+    box-shadow:0 5px 20px rgba(0,0,0,.3);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.logo img{
+    width:55px;
+    height:55px;
+    object-fit:cover;
+    border-radius:50%;
+}
+
+.logo h2{
+    color:#d4af37;
+    font-size:24px;
+}
+
+.logo span{
+    font-size:13px;
+    color:#bbb;
+}
+
+nav{
+    display:flex;
+    gap:25px;
+}
+
+nav a{
+    color:#fff;
+    transition:.3s;
+    font-weight:600;
+}
+
+nav a:hover{
+    color:#d4af37;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    padding-top:140px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+    gap:60px;
+}
+
+.hero h1{
+    font-size:55px;
+    margin:15px 0;
+}
+
+.hero p{
+    color:#ccc;
+    margin-bottom:30px;
+}
+
+.premium{
+    color:#d4af37;
+    letter-spacing:3px;
+    font-size:14px;
+}
+
+.hero-image img{
+    border-radius:20px;
+    box-shadow:0 20px 40px rgba(0,0,0,.5);
+}
+
+/* ================= BUTTON ================= */
+
+.btn{
+    display:inline-block;
+    padding:14px 30px;
+    background:#d4af37;
+    color:#111;
+    border-radius:50px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+    background:#f0c84b;
+}
+/* ================= PRODUK ================= */
+
+.produk{
+    text-align:center;
+}
+
+.produk h2{
+    font-size:38px;
+    margin-bottom:50px;
+    color:#d4af37;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:#1a1a1a;
+    border-radius:20px;
+    overflow:hidden;
+    transition:.3s;
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
+}
+
+.card:hover{
+    transform:translateY(-10px);
+}
+
+.card img{
+    height:320px;
+    object-fit:cover;
+}
+
+.card h3{
+    margin:20px 0 10px;
+    color:#d4af37;
+}
+
+.card p{
+    padding:0 20px;
+    color:#ccc;
+}
+
+.harga{
+    font-size:22px;
+    color:#fff !important;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.card .btn{
+    margin:25px 20px;
+}
+
+/* ================= ABOUT ================= */
+
+.about,
+.filosofi{
+    text-align:center;
+    max-width:900px;
+    margin:auto;
+}
+
+.about h2,
+.filosofi h2{
+    color:#d4af37;
+    font-size:36px;
+    margin-bottom:20px;
+}
+
+.about p,
+.filosofi p{
+    color:#ccc;
+    font-size:17px;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    background:#111;
+    text-align:center;
+    padding:50px 20px;
+    margin-top:80px;
+}
+
+footer h2{
+    color:#d4af37;
+    margin-bottom:15px;
+}
+
+footer p{
+    color:#aaa;
+    margin:8px 0;
+}
+
+/* ================= CART ================= */
+
 .cart-popup{
-  position: fixed;
-  right: 20px;
-  bottom: 80px;
-  width: 320px;
-  background: #fff;
-  border-radius: 15px;
-  padding: 15px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  z-index: 999;
+    position:fixed;
+    right:20px;
+    bottom:90px;
+    width:330px;
+    background:#1b1b1b;
+    border:1px solid #333;
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.5);
+    z-index:999;
 }
 
 .hidden{
-  display: none;
+    display:none;
 }
 
 .floating-cart{
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  background: black;
-  color: white;
-  border: none;
-  padding: 15px;
-  border-radius: 50px;
-  cursor: pointer;
-  z-index: 1000;
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    background:#d4af37;
+    color:#111;
+    border:none;
+    padding:15px 18px;
+    border-radius:50px;
+    font-size:18px;
+    cursor:pointer;
+    font-weight:bold;
+    z-index:1000;
 }
 
 .cart-item{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 10px 0;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 5px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:10px 0;
+    border-bottom:1px solid #333;
+    padding-bottom:8px;
 }
 
 .cart-item button{
-  margin: 0 3px;
+    margin-left:5px;
+    padding:4px 8px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+
+header{
+    flex-direction:column;
+    gap:20px;
+}
+
+nav{
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.hero{
+    grid-template-columns:1fr;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:38px;
+}
+
+.hero-image{
+    order:-1;
+}
+
+section{
+    padding:60px 7%;
+}
+
 }

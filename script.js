@@ -1,106 +1,124 @@
+// ==============================
+// DENIADESIGN CART SYSTEM
+// ==============================
+
 let cart = [];
 
-// TOGGLE CART
-function toggleCart(){
-  document.getElementById("cartPopup").classList.toggle("hidden");
+function formatRupiah(number){
+    return "Rp " + number.toLocaleString("id-ID");
 }
 
-// ADD TO CART
 function addToCart(name, price){
-  let item = cart.find(p => p.name === name);
 
-  if(item){
-    item.qty++;
-  } else {
-    cart.push({name, price, qty:1});
-  }
+    const item = cart.find(i => i.name === name);
 
-  updateCart();
+    if(item){
+        item.qty++;
+    }else{
+        cart.push({
+            name:name,
+            price:price,
+            qty:1
+        });
+    }
+
+    updateCart();
 }
 
-// UPDATE CART
 function updateCart(){
-  let count = 0;
-  let total = 0;
 
-  let cartItems = document.getElementById("cartItems");
-  cartItems.innerHTML = "";
+    const cartItems = document.getElementById("cartItems");
+    const cartCount = document.getElementById("cartCount");
+    const cartTotal = document.getElementById("cartTotal");
 
-  cart.forEach((item, index)=>{
-    count += item.qty;
-    total += item.price * item.qty;
+    cartItems.innerHTML = "";
 
-    cartItems.innerHTML += `
-      <div class="cart-item">
-        <span>${item.name}</span>
+    let total = 0;
+    let count = 0;
 
-        <div>
-          <button onclick="minQty(${index})">-</button>
-          <span>${item.qty}</span>
-          <button onclick="plusQty(${index})">+</button>
-          <button onclick="removeItem(${index})">❌</button>
+    cart.forEach((item,index)=>{
+
+        total += item.price * item.qty;
+        count += item.qty;
+
+        cartItems.innerHTML += `
+        <div class="cart-item">
+            <div>
+                <strong>${item.name}</strong><br>
+                ${formatRupiah(item.price)} × ${item.qty}
+            </div>
+
+            <div>
+                <button onclick="minusItem(${index})">-</button>
+                <button onclick="plusItem(${index})">+</button>
+            </div>
         </div>
+        `;
+    });
 
-        <b>Rp ${(item.price * item.qty).toLocaleString("id-ID")}</b>
-      </div>
-    `;
-  });
-
-  document.getElementById("cartCount").innerText = count;
-  document.getElementById("cartTotal").innerText =
-    "Rp " + total.toLocaleString("id-ID");
+    cartCount.innerText = count;
+    cartTotal.innerText = formatRupiah(total);
 }
 
-// + QTY
-function plusQty(index){
-  cart[index].qty++;
-  updateCart();
+function plusItem(index){
+    cart[index].qty++;
+    updateCart();
 }
 
-// - QTY
-function minQty(index){
-  cart[index].qty--;
+function minusItem(index){
 
-  if(cart[index].qty <= 0){
-    cart.splice(index,1);
-  }
+    cart[index].qty--;
 
-  updateCart();
+    if(cart[index].qty <= 0){
+        cart.splice(index,1);
+    }
+
+    updateCart();
 }
 
-// REMOVE ITEM
-function removeItem(index){
-  cart.splice(index,1);
-  updateCart();
-}
-
-// CLEAR CART
 function clearCart(){
-  cart = [];
-  updateCart();
+
+    if(confirm("Kosongkan keranjang?")){
+        cart = [];
+        updateCart();
+    }
+
 }
 
-// CHECKOUT WHATSAPP
+function toggleCart(){
+
+    document
+        .getElementById("cartPopup")
+        .classList
+        .toggle("hidden");
+
+}
+
 function checkout(){
-  if(cart.length === 0){
-    alert("Keranjang masih kosong!");
-    return;
-  }
 
-  let pesan = "Halo DeniaDesign, saya mau order:%0A%0A";
+    if(cart.length === 0){
+        alert("Keranjang masih kosong.");
+        return;
+    }
 
-  cart.forEach(item=>{
-    pesan += `- ${item.name} (${item.qty} x Rp ${item.price})%0A`;
-  });
+    let text = "Halo DeniaDesign,%0A%0ASaya ingin memesan:%0A";
 
-  let total = cart.reduce((a,b)=>a + b.price*b.qty,0);
+    let total = 0;
 
-  pesan += `%0ATotal: Rp ${total.toLocaleString("id-ID")}`;
+    cart.forEach(item=>{
 
-  let nomor = "6283822941348";
+        text += `• ${item.name} (${item.qty}x) - ${formatRupiah(item.price * item.qty)}%0A`;
 
-  window.open(
-    "https://wa.me/" + nomor + "?text=" + encodeURIComponent(pesan),
-    "_blank"
-  );
+        total += item.price * item.qty;
+
+    });
+
+    text += `%0A====================%0A`;
+    text += `Total : ${formatRupiah(total)}`;
+
+    window.open(
+        `https://wa.me/6283822941348?text=${text}`,
+        "_blank"
+    );
+
 }
